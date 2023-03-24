@@ -240,15 +240,15 @@ export default {
 	addEditStyleChange() {
 	  this.$nextTick(()=>{
 	    // input
-	    document.querySelectorAll('.addEdit-block .input .el-input__inner').forEach(el=>{
-	      el.style.height = this.addEditForm.inputHeight
-	      el.style.color = this.addEditForm.inputFontColor
-	      el.style.fontSize = this.addEditForm.inputFontSize
-	      el.style.borderWidth = this.addEditForm.inputBorderWidth
-	      el.style.borderStyle = this.addEditForm.inputBorderStyle
-	      el.style.borderColor = this.addEditForm.inputBorderColor
-	      el.style.borderRadius = this.addEditForm.inputBorderRadius
-	      el.style.backgroundColor = this.addEditForm.inputBgColor
+      document.querySelectorAll('.addEdit-block .input .el-input__inner').forEach(el=>{
+        el.style.height = this.addEditForm.inputHeight
+        el.style.color = this.addEditForm.inputFontColor
+        el.style.fontSize = this.addEditForm.inputFontSize
+        el.style.borderWidth = this.addEditForm.inputBorderWidth
+        el.style.borderStyle = this.addEditForm.inputBorderStyle
+        el.style.borderColor = this.addEditForm.inputBorderColor
+        el.style.borderRadius = this.addEditForm.inputBorderRadius
+        el.style.backgroundColor = this.addEditForm.inputBgColor
 	    })
 	    document.querySelectorAll('.addEdit-block .input .el-form-item__label').forEach(el=>{
 	      el.style.lineHeight = this.addEditForm.inputHeight

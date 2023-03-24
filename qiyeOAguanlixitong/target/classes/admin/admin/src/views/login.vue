@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="container loginIn">
-          <img src="http://localhost:8082/doctor/login-bg.svg" />
+          <img src="http://localhost:8082/doctor/login-left.png" />
 
             <div :class="2 == 1 ? 'left' : 2 == 2 ? 'left center' : 'left right'"
                  style="backgroundColor: rgba(12,0,0)">

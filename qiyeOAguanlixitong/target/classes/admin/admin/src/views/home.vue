@@ -1,55 +1,50 @@
 <template>
-<div class="content">
-  <div class="home">
-    <el-row>
-      <el-col :span="24">
-        <el-card :shadow="shadow"  >
-          <div class="block-text-center" m="t-4">
-            <div class="demonstration" >欢迎使用TANSCI-CRM客户关系管理系统</div>
-            <el-carousel trigger="click" height="280px">
-              <el-carousel-item v-for="item in  carouselList" :key="item">
-                <el-image :src="item"  fit="fill"></el-image>
-              </el-carousel-item>
-            </el-carousel>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="6">
-        <div class="home-header" :shadow="shadow" style="margin-top: 10px">
-          <el-card class="home-header-greetings" >
-            <div class="greetings-text">您好 {{username}} ！祝您新的一天工作愉快。</div>
-            <div class="greetings-weather">今天阴天，-8~10° 较冷，注意加衣</div>
-          </el-card>
-          <el-card class="home-header-todo">
-            <div v-for="todo in todoList" :key="todo">
-              <div class="todo-title">
-                <el-icon :color="todo.color" style="vertical-align: middle;">
-                  <component :is="todo.icon"></component>
-                </el-icon>
-                <span style="vertical-align: center">{{todo.name}}</span>
-              </div>
-              <div class="todo-num">{{todo.untreated}}/{{todo.total}}</div>
-            </div>
-          </el-card>
+  <div class="content">
+    <el-card >
+        <div class="block-text-center" m="t-4">
+          <div class="demonstration" >欢迎使用TANSCI-CRM客户关系管理系统</div>
+          <el-carousel trigger="click" height="280px">
+            <el-carousel-item v-for="item in  4" :key="item">
+              {{item}}
+            </el-carousel-item>
+          </el-carousel>
         </div>
-      </el-col>
-      <el-col :span="18">
-        <div class="home-main-card">
-          <el-card v-for="(card,index) in cards" :key="index" :shadow="shadow" :style="{marginTop:'6px', padding: '2rem 0'}">
-            <div class="main-card-value">
-              <el-icon :color="card.color" >
-                <component :is="card.icon"></component>
+      </el-card>
+    <el-card style="margin-top: 10px;" >
+      <div class="home-header" >
+        <div class="home-header-greetings" >
+          <svg-icon icon-class="date.svg" class="icon"></svg-icon>
+          <div class="greetings-text">您好 {{username}} ！祝您新的一天工作愉快。</div>
+
+          <div class="greetings-weather">今天阴天，-8~10° 较冷，注意加衣</div>
+        </div>
+        <div class="home-header-todo">
+          <div v-for="todo in todoList" :key="todo">
+            <div class="todo-title">
+              <el-icon :color="todo.color" style="vertical-align: middle;">
+                <component :is="todo.icon"></component>
               </el-icon>
-              <span class="card-value-num">{{card.total}}</span>
-              <span class="card-value-ratio">, {{card.ratio}}%</span>
+              <span style="vertical-align: center">{{todo.name}}</span>
             </div>
-            <div class="main-card-text">{{card.name}}</div>
-          </el-card>
+            <div class="todo-num">{{todo.untreated}}/{{todo.total}}</div>
+
+          </div>
         </div>
-      </el-col>
-    </el-row>
+      </div>
+    </el-card>
+    <div class="home-main">
+      <div class="home-main-card">
+        <el-card v-for="(card,index) in cards" :key="index" :style="{marginTop:'6px', flex: 1,padding: '2rem 0', marginLeft: index==0?'0':'0.3rem'}">
+          <div class="main-card-value">
+            <el-icon :color="card.color" style="vertical-align: middle;">
+              <component :is="card.icon"></component>
+            </el-icon>
+            <span class="card-value-num">{{card.total}}</span>
+            <span class="card-value-ratio">, {{card.ratio}}%</span>
+          </div>
+          <div class="main-card-text">{{card.name}}</div>
+        </el-card>
+      </div>
       <div class="home-main-chart" style="margin-top: 10px">
         <div class="chart-left" >
           <el-card :shadow="shadow" >
@@ -62,7 +57,8 @@
           </el-card>
         </div>
       </div>
-  </div>
+    </div>
+
 </div>
 </template>
 <script>
@@ -91,57 +87,7 @@ export default {
   },
   mounted(){
     this.init();
-    const noColumnar = () =>{
-      let myColumnar = echarts.init(document.getElementById("myColumnar"));
-      myColumnar.setOption({
-        legend: {},
-        tooltip: {},
-        color: ['#bdc3c7', '#2c3e50', '#242e42'],
-        dataset: {
-          dimensions: ['product', '2021', '2020', '2019'],
-          source: [
-            ['1月', 43.3, 85.8, 93.7 ],
-            ['2月', 83.1, 73.4, 55.1 ],
-            ['3月', 86.4, 65.2, 82.5 ],
-            ['4月', 72.4, 53.9, 39.1 ],
-            ['5月', 72.4, 53.9, 39.1 ],
-            ['6月', 72.4, 53.9, 39.1 ],
-            ['7月', 72.4, 53.9, 39.1 ],
-            ['8月', 72.4, 53.9, 39.1 ],
-            ['9月', 72.4, 53.9, 39.1 ],
-            ['10月', 72.4, 53.9, 39.1 ],
-            ['11月', 72.4, 53.9, 39.1 ],
-            ['12月', 72.4, 53.9, 39.1 ],
-          ]
-        },
-        xAxis: {
-          type: 'category',
-          axisTick: {
-            show: false // 不显示坐标轴刻度线
-          },
-        },
-        yAxis: {
-          show: true, // 不显示坐标轴线、坐标轴刻度线和坐标轴上的文字
-          axisTick: {
-            show: false // 不显示坐标轴刻度线
-          },
-          axisLine: {
-            show: false // 不显示坐标轴线
-          },
-          splitLine: {
-            show: true // 不显示网格线
-          },
-        },
-        series: [
-          {type: 'bar'},
-          {type: 'bar'},
-          {type: 'bar'}
-        ]
-      });
-      window.onresize = function () {
-        myColumnar.resize();
-      };
-    }
+
     const noPie = () =>{
       let myPie = echarts.init(document.getElementById("myPie"));
       myPie.setOption({
@@ -214,12 +160,98 @@ export default {
   height: 100%;
   min-height: 500px;
   text-align: center;
-  .home{
-    .home-header-greetings{
-      height: 100%;
-      margin-right: auto;
+  .block-text-center{
+    .demonstration{
+      font-size: 25px;
+      text-align: center;
+      font-weight: bold
     }
   }
+  .home-header-greetings{
+    .greetings-text{
+      font-size: 18px;
+      padding-bottom: 0.6rem;
+    }
+    .greetings-weather{
+      font-size: 13px;
+      color: var(--t6);
+    }
+
+
+  }
+  .home-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 4rem;
+
+    .home-header-greetings{
+      .greetings-text{
+        font-size: 18px;
+        padding-bottom: 0.6rem;
+      }
+      .greetings-weather{
+        font-size: 13px;
+        color: var(--t6);
+      }
+    }
+    .home-header-todo{
+      display: flex;
+      div{
+        padding: 0 0.6rem;
+        .todo-title{
+          font-size: 14px;
+          color: var(--t6);
+          padding-bottom: 1rem;
+          .el-icon{
+            padding-right: 0.2rem;
+          }
+        }
+        .todo-num{
+          font-size: 18px;
+          font-weight: 700;
+          padding-left: 1.6rem;
+        }
+      }
+    }
+  }
+  .home-main{
+    .home-main-card{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      text-align: center;
+      padding: 0.3rem 0;
+      .main-card-value{
+        font-size: 20px;
+        font-weight: 700;
+        .card-value-num{
+          padding: 0 0.4rem;
+          vertical-align: middle;
+        }
+        .card-value-ratio{
+          vertical-align: middle;
+        }
+      }
+      .main-card-text{
+        font-size: 14px;
+        padding-top: 0.4rem;
+        color: var(--t6);
+      }
+    }
+    .home-main-chart{
+      display: flex;
+      justify-content: space-between;
+      .chart-left{
+        width: 70%;
+        padding-right: 0.3rem;
+      }
+      .chart-right{
+        width: 30%;
+        padding-right: 0.3rem;
+      }
+    }
+  }
+
   .main-text{
     font-size: 38px;
     font-weight: bold;

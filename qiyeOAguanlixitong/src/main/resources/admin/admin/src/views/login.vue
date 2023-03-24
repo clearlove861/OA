@@ -8,18 +8,16 @@
                 <el-form class="login-form" label-position="left" :label-width="1 == 3 ? '56px' : '0px'">
                     <div class="title-container"><h3 class="title" style="color: rgba(255, 255, 255, 1)">CRM企业客户关系管理系统</h3></div>
                     <el-form-item :label="1 == 3 ? '用户名' : ''" :class="'style'+1">
-                        <span v-if="1 != 3" class="svg-container" style="color:rgba(238, 238, 238, 1);line-height:44px"><svg-icon
-                                icon-class="user"/></span>
+                        <span v-if="1 != 3" class="svg-container" style="color:rgba(238, 238, 238, 1);line-height:44px"><svg-icon icon-class="user" style="color: #00c292;font-size: 18px"/></span>
                         <el-input placeholder="请输入用户名" name="username" type="text" v-model="rulesForm.username"/>
                     </el-form-item>
                     <el-form-item :label="1 == 3 ? '密码' : ''" :class="'style'+1">
-                        <span v-if="1 != 3" class="svg-container" style="color:rgba(238, 238, 238, 1);line-height:44px"><svg-icon
-                                icon-class="password"/></span>
+                        <span v-if="1 != 3" class="svg-container" style="color:rgba(238, 238, 238, 1);line-height:44px"><svg-icon icon-class="password" style="color: #00c292;font-size: 18px"/></span>
                         <el-input placeholder="请输入密码" name="password" type="password" v-model="rulesForm.password"/>
                     </el-form-item>
                     <el-form-item :label="1 == 3 ? '验证码' : ''" :class="'style'+1">
                         <span v-if="1 != 3" class="svg-container" style="color:rgba(238, 238, 238, 1);line-height:44px">
-                          <svg-icon icon-class="code"/></span>
+                          <svg-icon icon-class="code" style="color: #00c292 ;font-size: 18px"/></span>
                         <el-input placeholder="请输入验证码" name="code" type="text" v-model="rulesForm.code"/>
                         <div class="getCodeBt" @click="getRandCode(4)" style="height:44px;line-height:44px">
                             <span v-for="(item, index) in codes" :key="index"
@@ -68,22 +66,22 @@
                     num: 1,
                     color: '#000',
                     rotate: '10deg',
-                    size: '16px'
+                    size: '26px'
                 }, {
                     num: 2,
                     color: '#000',
                     rotate: '10deg',
-                    size: '16px'
+                    size: '26px'
                 }, {
                     num: 3,
                     color: '#000',
                     rotate: '10deg',
-                    size: '16px'
+                    size: '26px'
                 }, {
                     num: 4,
                     color: '#000',
                     rotate: '10deg',
-                    size: '16px'
+                    size: '26px'
                 }],
             };
         },
@@ -309,11 +307,11 @@
             .el-form-item__content {
                 position: relative;
 
-                .getCodeBt {
+                .getCodeBt {//验证码style
                     position: absolute;
                     right: 0;
                     top: 0;
-                    line-height: 40px;
+                    line-height: 60px;
                     width: 100px;
                     background-color: rgba(51, 51, 51, 0.4);
                     color: #fff;

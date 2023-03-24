@@ -26,7 +26,21 @@ module.exports = {
             }
         }
     },
-lintOnSave: false,
+    chainWebpack(config) {
+        config.module.rules.delete('svg');
+        config.module
+            .rule('icons')
+            .test(/\.svg$/)
+            .include.add(resolve('src/icons'))
+            .end()
+            .use('svg-sprite-loader')
+            .loader('svg-sprite-loader')
+            .options({
+                symbolId: 'icon-[name]'
+            })
+
+    },
+    lintOnSave: false,
     devServer: {
         host: "0.0.0.0", //指定使用一个 host。默认是 localhost，这里默认值即可
         port: 8081, //指定端口
@@ -43,21 +57,5 @@ lintOnSave: false,
             }
         }
     },
-chainWebpack(config) {
-    config.module
-      .rule('svg')
-      .exclude.add(resolve('src/icons'))
-      .end()
-    config.module
-      .rule('icons')
-      .test(/\.svg$/)
-      .include.add(resolve('src/icons'))
-      .end()
-      .use('svg-sprite-loader')
-      .loader('svg-sprite-loader')
-      .options({
-        symbolId: 'icon-[name]'
-      })
-      .end()
-}
+
 }
